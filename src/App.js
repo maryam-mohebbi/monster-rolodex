@@ -19,18 +19,21 @@ class App extends Component {
       .then((response) => this.setState({ monsters: response.data }));
   }
 
+  handleChange = (getSearchInput) => {
+    this.setState({ searchField: getSearchInput.target.value });
+  };
+
   render() {
     const { monsters, searchField } = this.state;
     const filteredMonster = monsters.filter((monster) =>
       monster.name.toLowerCase().includes(searchField.toLocaleLowerCase())
     );
+
     return (
       <div className="App">
         <SearchBox
           placeholder="search monster"
-          handleChange={(getSearchInput) =>
-            this.setState({ searchField: getSearchInput.target.value })
-          }
+          handleChange={this.handleChange}
         />
         <CardList monsterslist={filteredMonster} />
       </div>
