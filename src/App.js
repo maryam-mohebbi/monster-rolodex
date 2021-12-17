@@ -25,8 +25,12 @@ class App extends Component {
 
   render() {
     const { monsters, searchField } = this.state;
-    const filteredMonster = monsters.filter((monster) =>
+    const filteredMonsterName = monsters.filter((monster) =>
       monster.name.toLowerCase().includes(searchField.toLocaleLowerCase())
+    );
+
+    const filteredMonsterEmail = monsters.filter((monster) =>
+      monster.email.toLowerCase().includes(searchField.toLocaleLowerCase())
     );
 
     return (
@@ -36,7 +40,7 @@ class App extends Component {
           placeholder="search monster"
           handleChange={this.handleChange}
         />
-        <CardList monsterslist={filteredMonster} />
+        <CardList monsterslist={(filteredMonsterName, filteredMonsterEmail)} />
       </div>
     );
   }
